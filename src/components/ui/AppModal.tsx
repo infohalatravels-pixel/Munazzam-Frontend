@@ -125,6 +125,7 @@ export function ModalFieldLabel({
 export function ModalFooterActions({
   onCancel,
   onSave,
+  cancelLabel = "Cancel",
   saveLabel = "Save Changes",
   savingLabel = "Saving...",
   isSaving = false,
@@ -132,7 +133,8 @@ export function ModalFooterActions({
   error,
 }: {
   onCancel: () => void;
-  onSave: () => void;
+  onSave: () => void | Promise<void>;
+  cancelLabel?: string;
   saveLabel?: string;
   savingLabel?: string;
   isSaving?: boolean;
@@ -153,7 +155,7 @@ export function ModalFooterActions({
           disabled={isSaving}
           className="rounded-lg px-lg py-sm text-label-md text-on-surface-variant transition-colors hover:bg-surface-container disabled:opacity-60"
         >
-          Cancel
+          {cancelLabel}
         </button>
         <button
           type="button"
